@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
+		<link rel="stylesheet" type="text/css" href="../css/fondDevice.css" />
+		<link rel="stylesheet" type="text/css" href="../css/control.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="closeFuondDevice()"></a>
+			<h1 class="mui-title">发现设备</h1>
+		</header>
+		<div class="mui-content" id="list">
+			<ul id="m_mdnslist" class="mui-table-view">
+				<div class="alert">
+					<h4>需要开启设备蓝牙</h4>
+				</div>
+				<!--<li class="mui-table-view-cell" id="1">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">解绑</a>
+					</div>
+					<div class="mui-slider-handle">
+						<span class="mui-icon mui-icon-info"></span>
+						<div class="infor">
+							<p id="device-name">设&nbsp;&nbsp;备&nbsp;&nbsp;名：EMB-1066</p>
+							<p id="uuid-name">信号强度：-78</p>
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell binded" id="2">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">解绑</a>
+					</div>
+					<div class="mui-slider-handle">
+						<span class="mui-icon mui-icon-info"></span>
+						<div class="infor">
+							<p id="device-name">设&nbsp;&nbsp;备&nbsp;&nbsp;名：EMB-1066</p>
+							<p id="uuid-name">信号强度：-78<span class="mgr">(已绑定)</span></p>
+						</div>
+					</div>
+				</li>-->
+			</ul>
+			<div class="alert">
+				<span class="mui-spinner"></span>
+			</div>
+		</div>
+
+		<div class="mui-content" id="control">
+			<div class="guide">
+				<div class="block">
+					<div class="btn-circle" onclick="fntatami_goup()">
+						上升
+					</div>
+				</div>
+				<div class="block">
+					<div class="btn-circle" onclick="fntatami_stop()">
+						停止
+					</div>
+				</div>
+				<div class="block">
+					<div class="btn-circle" onclick="fntatami_godown()">
+						下降
+					</div>
+				</div>
+				<div class="mui-btn lock" id="btn-lock" onclick="fnClickLock()">
+					<i class="iconfont">&#xe602</i> 锁定
+				</div>
+			</div>
+			<img id="no_device_bac" src="../image/ctrl_bac.png" alt="bac" />
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/instructions.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/foundDevice.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/disConnect.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			document.getElementById('control').style.height = screen.height + 'px';
+			apiready = function() {
+					g_bleSDK = api.require('ble');
+					fnInitBLEManager();
+					Android_ListenKeyBack();
+				}
+				//checkLock('00d49c32807efaff');
+
+			/*function checkLock(msg) {
+				msg = msg.substring(14, 16);
+				alert(msg);
+				if(msg == _UnLockStatus) {
+					alert(msg);
+					document.getElementsByClassName('lock').innerHTML = '未锁定';
+				} else if(msg == _LockStatus) {
+					alert(msg);
+				} else return;
+			}*/
+		</script>
+	</body>
+</html>

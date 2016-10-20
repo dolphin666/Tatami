@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
+		<link rel="stylesheet" type="text/css" href="../css/device_list.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">设备列表</h1>
+		</header>
+		<div class="mui-content">
+			<ul id="m_devicelist" class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell" id="device1">
+					<a class="mui-navigate-right" href="javascript:;">
+						<span class="mui-icon mui-icon-extra mui-icon-extra-gift"></span>
+						<span class="status">未连接</span> tatami one
+					</a>
+				</li>
+				<li class="mui-table-view-cell" id="device2">
+					<a class="mui-navigate-right" href="javascript:;">
+						<span class="mui-icon mui-icon-extra mui-icon-extra-gift"></span>
+						<span class="status">已连接</span> tatami two
+					</a>
+				</li>
+			</ul>
+			<ul id="m_mdnslist" class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="javascript:;">
+						<span class="mui-icon mui-icon-extra mui-icon-extra-new"></span> 购买新品
+					</a>
+				</li>
+			</ul> 
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/instructions.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/devicelist.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+			apiready = function() {
+				g_bleSDK = api.require('ble');
+				fnInitBLEManager();
+			}
+			
+			var tatami = []
+		</script>
+	</body>
+
+</html>

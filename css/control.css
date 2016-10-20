@@ -1,0 +1,69 @@
+.mui-bar {
+	padding-top: 1em;
+	height: 3.5em;
+	font-weight: bolder;
+	background-color: #E18E4C;
+	font-family: "黑体";
+}
+
+.mui-title {
+	color: #fff;
+}
+
+.mui-pull-left {
+	color: #fff;
+}
+
+.mui-content {
+	position: relative;
+}
+
+#no_device_bac {
+	width: 100%;
+}
+
+.guide {
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	top: 100px;
+}
+
+.block {
+	height: 120px;
+	line-height: 100px;
+}
+
+.btn-circle {
+	margin: 0 auto;
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
+	color: #fff;
+	font-size: 1.5em;
+	font-weight: bold;
+	border-radius: 40px;
+	background: rgba(0, 0, 0, .3);
+	box-shadow: 1px 1px 0px #888888;
+}
+
+.lock {
+	width: 160px;
+	height: 45px;
+	line-height: 25px;
+	font-size: 1.3em;
+	color: #fff;
+	background: rgba(2, 2, 2, .5);
+	border-radius: 10px;
+	box-shadow: 0px 0px 2px #888888;
+}
+
+.mui-icon-locked {
+	margin-right: .5em;
+}
+
+#control{
+	display: none;
+	overflow: hidden;
+}
+

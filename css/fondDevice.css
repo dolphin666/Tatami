@@ -1,0 +1,70 @@
+.mui-bar {
+	padding-top: 1em;
+	height: 3.5em;
+	font-weight: bolder;
+	background-color: #E18E4C;
+	font-family: "黑体";
+}
+
+.mui-title {
+	color: #fff;
+}
+
+.mui-pull-left {
+	color: #fff;
+}
+
+.mui-table-view-cell {
+	height: 75px;
+	padding: 16px 15px;
+}
+
+.mui-table-view-cell a {
+	line-height: 75px;
+	font-size: 1.2em;
+}
+
+.mui-table-view-cell span {
+	vertical-align: middle;
+	height: 100%;
+}
+
+.mui-table-view-cell {
+	color: #A3A3A3;
+}
+
+.mui-icon {
+	font-size: 2.5em;
+	float: left;
+	margin-right: .5em;
+}
+.alert{
+	width: 100%;
+	text-align: center;
+	height: 4em;
+	padding: 1em;
+}
+.infor {
+	font-weight: bold;
+}
+
+.mgr{
+	font-size: .6em;
+	margin-left: 3em;
+}
+
+.binded p,
+.binded span
+{
+	color: #007AFF;
+}
+#device-name {
+	margin-bottom: 3px;
+}
+
+#device-name{
+	width: 75%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
