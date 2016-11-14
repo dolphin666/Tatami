@@ -62,10 +62,10 @@ function fndiscoverCharacteristics_break(pass_service_uuid) {
 			fnsetSimpleNotify();
 			setTimeout(function() {
 				fnBreakBind();
-				clearTimeout(test_timer_id);
-			},200);
+				console.log("run: fnBreakBind()");
+			}, 500);
 		} else {
-			alert(err.code);
+			//alert(err.code);
 		}
 	});
 }
@@ -82,6 +82,7 @@ function fnBreakBind() {
 		function(ret) {
 			if(ret) {
 				//setTimeout(fnConfirmBreak(), 50);
+				console.log('send data:'+sval);
 				var uuid = localStorage.getItem(_PERIPHERALUUID);
 				localStorage.removeItem(uuid);
 				fnclearAllSimpleNotifyData();
@@ -94,16 +95,18 @@ function fnBreakBind() {
 function fnConfirmBreak() {
 	g_bleSDK.getAllSimpleNotifyData(function(ret) {
 		var uuid = localStorage.getItem(_PERIPHERALUUID);
-		alert(JSON.stringify(ret));
+		//alert(JSON.stringify(ret));
 		for(var key in ret) {
 			if(key == uuid) {
-				var msg = '' + ret[key].data;
-				msg = msg.substring(12, 14);
+				var rmsg = '' + ret[key].data;
+				rmsg = rmsg.substring(12, 14);
 				//alert(msg);
-				if(msg == _ReBreakBind) { //成功
+				//console.log('Break='+rmsg);
+				if(rmsg == _ReBreakBind) { //成功
 					localStorage.removeItem(uuid);
 					fnclearAllSimpleNotifyData();
 					fnDisConnectDecice();
+					console.log('Break succeed')
 				} else { //失败
 					mui.toast('解绑失败');
 				}
@@ -117,9 +120,13 @@ function fnDisConnectDecice() {
 		peripheralUUID: localStorage.getItem(_PERIPHERALUUID)
 	}, function(ret, err) {
 		if(ret.status) {
-			//mui.toast("断开连接！");
 			console.log('断开连接..')
-			closeFuondDevice();
+			closeWin('foundDevice');
+			api.showProgress({
+				animationType: 'zoom',
+				title: '断开连接。。',
+				text: '即将断开连接'
+			});
 		}
 	});
 }

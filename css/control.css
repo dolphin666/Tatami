@@ -1,6 +1,6 @@
 .mui-bar {
 	padding-top: 1em;
-	height: 3.5em;
+	height: 4em;
 	font-weight: bolder;
 	background-color: #E18E4C;
 	font-family: "黑体";
@@ -24,16 +24,42 @@
 
 .guide {
 	width: 100%;
+	margin-top: 1em;
 	text-align: center;
-	position: absolute;
-	top: 100px;
 }
-
+.guide h6{
+	margin-top: 0px;
+	color: #242424;
+}
 .block {
-	height: 120px;
-	line-height: 100px;
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	float: left;
 }
-
+.block_half{
+	width: 50%;
+	height: 80px;
+	float: left;
+	line-height: 80px;
+}
+.turn{
+	transform:rotate(180deg);
+	-webkit-transform:rotate(180deg); /* Safari and Chrome */
+}
+.block_half span,
+.block span{
+	padding: 20px;
+	display: inline-block;
+	font-size: 25px;
+	color: #333333;
+	border-radius: 35px;
+	border: 1px #242424 solid;
+}
+.block_half span:active,
+.block span:active{
+	background:rgba(250,250,250,0.6);
+}
 .btn-circle {
 	margin: 0 auto;
 	width: 80px;
@@ -45,6 +71,11 @@
 	border-radius: 40px;
 	background: rgba(0, 0, 0, .3);
 	box-shadow: 1px 1px 0px #888888;
+}
+.btn-circle:active,
+.lock:active{
+	color: #fff !important;
+	background: rgba(120, 120, 120, .3);
 }
 
 .lock {
@@ -61,9 +92,13 @@
 .mui-icon-locked {
 	margin-right: .5em;
 }
-
+#list{
+	/*display: none;*/
+	position: relative;
+}
 #control{
 	display: none;
 	overflow: hidden;
+	background: url(../image/ctrl_bac.jpg);
 }
 

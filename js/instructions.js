@@ -26,3 +26,12 @@ const _ReUnlock = 'fb';//EMB1066发送解锁命令状到APP
 
 const _UnLockStatus = 'ff'//设备解锁
 const _LockStatus =  '01'//设备锁定
+
+var _URL = new Array(); 
+
+_URL[0] = "http://tatami.5822c3b6e0c13.d01.nanoyun.com/4.png";
+_URL[1] = "http://tatami.5822c3b6e0c13.d01.nanoyun.com/1.png";
+_URL[2] = "http://tatami.5822c3b6e0c13.d01.nanoyun.com/2.png";
+_URL[3] = "http://tatami.5822c3b6e0c13.d01.nanoyun.com/3.png";
+_URL[4] = "http://tatami.5822c3b6e0c13.d01.nanoyun.com/4.png";
+_URL[5] = "http://tatami.5822c3b6e0c13.d01.nanoyun.com/1.png";

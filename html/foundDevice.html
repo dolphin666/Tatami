@@ -10,95 +10,197 @@
 		<link rel="stylesheet" type="text/css" href="../css/fondDevice.css" />
 		<link rel="stylesheet" type="text/css" href="../css/control.css" />
 		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+		<style type="text/css">
+			.mui-slider-handle {
+				color: #555;
+			}
+			
+			.mui-slider-handle h4 {
+				font-weight: 500;
+			}
+			
+			.mui-icon-right-nav {
+				color: #fff;
+			}
+			
+			.binded,
+			.binded h4 {
+				color: #E18E4C;
+			}
+			
+			.confirmImg {
+				z-index: 10;
+				position: absolute;
+				top: 4em;
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				background-color: rgba(10, 10, 10, .5);
+				display: none;
+			}
+			
+			.confirmImg img {
+				margin-top: 4em;
+				width: 50%;
+			}
+		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="closeFuondDevice()"></a>
-			<h1 class="mui-title">发现设备</h1>
+			<h1 class="mui-title" id="title">发现设备</h1>
+			<a class="mui-icon iconfont icon-zititubiaojiechulianjie mui-icon-right-nav mui-pull-right" id="breakBtn" onclick="fnBreakBind()"> 解绑</a>
 		</header>
 		<div class="mui-content" id="list">
-			<ul id="m_mdnslist" class="mui-table-view">
-				<div class="alert">
-					<h4>需要开启设备蓝牙</h4>
+			<div class="btn-block" id="btn-block">
+				<div class="confirm">
+					<h4>请确认蓝牙已经打开</h4>
 				</div>
-				<!--<li class="mui-table-view-cell" id="1">
+				<div class="btn-search" id="begainSearch">
+					<button type="button" class="mui-btn mui-btn-primary mui-icon mui-icon-search">
+		         		 开始搜索
+		        	</button>
+				</div>
+				<div class="btn-search" id="stopSearch">
+					<button type="button" class="mui-btn mui-icon-closeempty mui-icon mui-icon-search">
+		         		 停止搜索
+		        	</button>
+				</div>
+			</div>
+			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" id="m_mdnslist">
+				<!--<li class="mui-table-view-cell binded" title="1" onclick="alert(this.title)">
 					<div class="mui-slider-right mui-disabled">
 						<a class="mui-btn mui-btn-red">解绑</a>
 					</div>
 					<div class="mui-slider-handle">
-						<span class="mui-icon mui-icon-info"></span>
-						<div class="infor">
-							<p id="device-name">设&nbsp;&nbsp;备&nbsp;&nbsp;名：EMB-1066</p>
-							<p id="uuid-name">信号强度：-78</p>
+						<div class="mui-table-cell mui-col-xs-10">
+							<h4 class="mui-ellipsis"><span class="mui-icon iconfont icon-lanya"></span>EMB1066 BLE</h4>
+							<p class="mui-h5 mui-ellipsis"><span class="mui-icon iconfont icon-xinhao"></span>信号强度未知  <span class="mgr">(已绑定)</span></p>
 						</div>
 					</div>
 				</li>
-				<li class="mui-table-view-cell binded" id="2">
+				<li class="mui-table-view-cell" id="1">
 					<div class="mui-slider-right mui-disabled">
 						<a class="mui-btn mui-btn-red">解绑</a>
 					</div>
 					<div class="mui-slider-handle">
-						<span class="mui-icon mui-icon-info"></span>
-						<div class="infor">
-							<p id="device-name">设&nbsp;&nbsp;备&nbsp;&nbsp;名：EMB-1066</p>
-							<p id="uuid-name">信号强度：-78<span class="mgr">(已绑定)</span></p>
+						<div class="mui-table-cell mui-col-xs-10">
+							<h4 class="mui-ellipsis"><span class="mui-icon iconfont icon-lanya1"></span>EMB1066 BLE</h4>
+							<p class="mui-h5 mui-ellipsis"><span class="mui-icon iconfont icon-xinhao"></span>信号强度-75</p>
 						</div>
 					</div>
 				</li>-->
 			</ul>
-			<div class="alert">
+			<div class="alert" id="alert">
 				<span class="mui-spinner"></span>
 			</div>
 		</div>
-
+		<div class="confirmImg" id="confirm">
+			<img src="../image/confirm.jpg" />
+		</div>
 		<div class="mui-content" id="control">
-			<div class="guide">
-				<div class="block">
-					<div class="btn-circle" onclick="fntatami_goup()">
-						上升
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="../image/4.png" alt="榻榻米" />
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../image/1.png" alt="榻榻米" />
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../image/2.png" alt="榻榻米" />
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../image/3.png" alt="榻榻米" />
+						</a>
+					</div>
+					<!-- 第四张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../image/4.png" alt="榻榻米" />
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="../image/1.png" alt="榻榻米" />
+						</a>
 					</div>
 				</div>
-				<div class="block">
-					<div class="btn-circle" onclick="fntatami_stop()">
-						停止
-					</div>
-				</div>
-				<div class="block">
-					<div class="btn-circle" onclick="fntatami_godown()">
-						下降
-					</div>
-				</div>
-				<div class="mui-btn lock" id="btn-lock" onclick="fnClickLock()">
-					<i class="iconfont">&#xe602</i> 锁定
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
 				</div>
 			</div>
-			<img id="no_device_bac" src="../image/ctrl_bac.png" alt="bac" />
+			<div class="guide" id="guide">
+				<div class="block">
+					<span class="mui-icon iconfont icon-xiangshangzhankai" onclick="fntatami_goup()"></span>
+					<h6>上升</h6>
+				</div>
+				<div class="block_half" id="btn-lock">
+					<span class="mui-icon iconfont icon-suo" id="btn-lock-span" name="hasLocked" onclick="fnClickLock()"></span>
+					<h6>童锁已锁</h6>
+				</div>
+				<div class="block_half">
+					<span class="mui-icon iconfont icon-tingzhi" onclick="fntatami_stop()"></span>
+					<h6>停止</h6>
+				</div>
+				<div class="block">
+					<span class="mui-icon iconfont icon-xiangshangzhankai turn" onclick="fntatami_godown()"></span>
+					<h6>下降</h6>
+				</div>
+			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/instructions.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/foundDevice.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/disConnect.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="../js/disConnect.js" type="text/javascript" charset="utf-8"></script>-->
 		<script type="text/javascript">
 			mui.init();
+			
 			document.getElementById('control').style.height = screen.height + 'px';
 			apiready = function() {
-					g_bleSDK = api.require('ble');
-					fnInitBLEManager();
-					Android_ListenKeyBack();
-				}
-				//checkLock('00d49c32807efaff');
-
-			/*function checkLock(msg) {
-				msg = msg.substring(14, 16);
-				alert(msg);
-				if(msg == _UnLockStatus) {
-					alert(msg);
-					document.getElementsByClassName('lock').innerHTML = '未锁定';
-				} else if(msg == _LockStatus) {
-					alert(msg);
-				} else return;
-			}*/
+				g_bleSDK = api.require('ble');
+				fnInitBLEManager();
+				Android_ListenKeyBack();
+				var mgt = api.winHeight / 44;
+				mgt = parseInt(mgt);
+				document.getElementById('guide').style.marginTop = mgt + 'px';
+			}
+			document.getElementById('begainSearch').addEventListener('tap', function() {
+				this.style.display = 'none';
+				document.getElementById('stopSearch').style.display = 'block';
+				document.getElementById('alert').style.display = 'block';
+				fnsearchDevice();
+			})
+			document.getElementById('stopSearch').addEventListener('tap', function() {
+				this.style.display = 'none';
+				document.getElementById('begainSearch').style.display = 'block';
+				document.getElementById('alert').style.display = 'none';
+				g_bleSDK.disconnect({
+					peripheralUUID: localStorage.getItem(_PERIPHERALUUID)
+				}, function(ret, err) {
+					if(ret.status) {
+						console.log('断开连接..')
+					}
+				})
+				clearTimeout(test_timer_id);
+			})
 		</script>
 	</body>
+
 </html>

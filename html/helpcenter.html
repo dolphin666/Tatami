@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>帮助中心</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/person.css" />
+		<script type="text/javascript" src="../js/config.js"></script>
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.mui-bar {
+				height: 3em;
+				font-weight: bolder;
+				background-color: #E18E4C;
+				font-family: "黑体";
+			}
+			
+			.mui-title {
+				color: #fff;
+			}
+			
+			.mui-content {
+				margin-top: 80px;
+			}
+			
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			
+			.mui-collapse-content p {
+				text-indent: 2em
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-plus mui-statusbar mui-statusbar-offset" style="background: #F9F9F9;">
+			<div class="mui-bar mui-bar-nav">
+				<a class="mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;" onclick="quit_helpcenter_page()"></a>
+				<h1 class="mui-title">使用说明</h1>
+			</div>
+		</header>
+
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-collapse" id="fade">
+					<a class="mui-navigate-right" href="#">如何绑定设备？</a>
+					<div class="mui-collapse-content">
+						<p>1.确保榻榻米电源接通，手机蓝牙已打开</p>
+						<p>2.搜索到蓝牙设备后，点击需要绑定的设备</p>
+						<p>3.在遥控上短按“停止”键，进行确认</p>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">需要每次使用都需要绑定吗？</a>
+					<div class="mui-collapse-content">
+						<p>只有第一次使用时需要绑定，以后选中搜索到的设备即可使用。</p>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">如何解绑单个设备？</a>
+					<div class="mui-collapse-content">
+						<p>在控制页面的右上角，点击“解绑”即可。</p>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">如何全部解绑？</a>
+					<div class="mui-collapse-content">
+						<p>长按遥控上“停止”键五秒，听到三次提示音后解绑成功。</p>
+					</div>
+				</li>
+			</ul>
+
+		</div>
+		</style>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+
+		function quit_helpcenter_page() {
+			closeWin("helpcenter");
+		}
+	</script>
+
+</html>

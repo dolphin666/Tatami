@@ -1,6 +1,6 @@
 .mui-bar {
-	padding-top: 0em;
-	height: 2.5em;
+	padding-top: 1em;
+	height: 3.5em;
 	font-weight: bolder;
 	background-color: #E18E4C;
 	font-family: "黑体";
@@ -45,8 +45,8 @@
 .button button {
 	width: 100px;
 	background: transparent;
-	border: 1px solid #fff;
-	color: #fff;
+	border: 2px solid #222;
+	color: #222;
 	border-radius: 8px;
 	font-weight: bold;
 	margin: 0 15px;

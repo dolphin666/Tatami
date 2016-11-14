@@ -1,70 +1,223 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>TaTaMi</title>
-    <link rel="stylesheet" type="text/css" href="../css/api.css" />
-	<style>
-		#con{
-			margin: 10px;
-			font-size: 24px; 
-		}
-		ul{
-			margin-bottom: 10px;
-		}
-		ul li{ 
-			margin: 5px 10px;
-			padding: 5px;
-			color: #000;
-			word-wrap: break-word;
-		}
-	</style>
-</head>
-<body>
-    <label id="con">Hello TaTaMi</label>
-	<div id='sys-info'></div>
-</body>
-<script type="text/javascript" src="../script/api.js"></script>
-<script src="../js/config.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-    apiready = function(){
-		/*var ver = api.version;
-		var sType = api.systemType;
-		var sVer = api.systemVersion;
-		var id = api.deviceId;
-		var model = api.deviceModel;
-		var name = api.deviceName;
-		var cType = api.connectionType;
-		var winName = api.winName;
-		var winWidth = api.winWidth;
-		var winHeight = api.winHeight;
-		var frameName = api.frameName || '';
-		var frameWidth = api.frameWidth || '';
-		var frameHeight = api.frameHeight || '';
 
-		var str = '<ul>';
-		str += '<li>引擎版本信息: ' + ver + '</li>';
-		str += '<li>系统类型: ' + sType + '</li>';
-		str += '<li>系统版本: ' + sVer + '</li>';
-		str += '<li>设备标识: ' + id + '</li>';
-		str += '<li>设备型号: ' + model + '</li>';
-		str += '<li>设备名称: ' + name + '</li>';
-		str += '<li>网络状态: ' + cType + '</li>';
-		str += '<li>主窗口名字: ' + winName + '</li>';
-		str += '<li>主窗口宽度: ' + winWidth + '</li>';
-		str += '<li>主窗口高度: ' + winHeight + '</li>';
-		str += '<li>子窗口名字: ' + frameName + '</li>';
-		str += '<li>子窗口宽度: ' + frameWidth + '</li>';
-		str += '<li>子窗口高度: ' + frameHeight + '</li>';
-		str += '</ul>';
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/main.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+		<style type="text/css">
+			.mui-bar {
+				padding-top: 0em;
+				height: 2.5em;
+				font-weight: bolder;
+				background-color: #E18E4C;
+				font-family: "黑体";
+			}
+			
+			.mui-title {
+				color: #fff;
+			}
+			
+			.mui-pull-left {
+				color: #fff;
+			}
+			
+			.post img {
+				width: 100%;
+				height: auto;
+			}
+			
+			.iconfont {
+				color: #E18E4C;
+			}
+			
+			.mui-media-body {
+				color: #E18E4C !important;
+			}
+		</style>
+	</head>
 
-		$api.byId('sys-info').innerHTML = str;*/
-		
-		openWin("start", "widget://html/start.html", true, null);
-		//openWin("devicelist", "widget://html/device_list.html", true, null);
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<!--<a class="mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+			<h1 class="mui-title">智能榻榻米</h1>
+		</header>
+		<div class="mui-content" id='ui-content'>
+			<div class="post">
+				<img src="../image/tatami.png" />
+			</div>
+			<div class="button-block">
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6" onclick="opSearchPage()">
+						<a href="#">
+							<span class="mui-icon iconfont icon-tianjia"></span>
+							<div class="mui-media-body">发现设备</div>
+						</a>
+					</li>
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-6  mui-col-sm-3">
+						<a href="#">
+							<span class="mui-icon iconfont icon-goumai" onclick="showBrowser('http://www.shanghaiyingjing.com/')"></span>
+							<div class="mui-media-body">樱井商城</div>
+						</a>
+					</li>-->
+					<li class="mui-table-view-cell mui-media mui-col-xs-6  mui-col-sm-3">
+						<a href="#">
+							<span class="mui-icon iconfont icon-shuoming" onclick="openHelpCenter()"></span>
+							<div class="mui-media-body">使用说明</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6  mui-col-sm-3" onclick="openAbout()">
+						<a href="#">
+							<span class="mui-icon iconfont icon-guanyu1"></span>
+							<div class="mui-media-body">关于我们</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/instructions.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+			apiready = function() {
+				X5broser = api.require('webBrowser');
+			}
 
-    };
-</script>
+			function opSearchPage() {
+				//openWin("searchDevice", "widget://html/searchDevice.html", true, null);
+				openWin("foundDevice", "widget://html/foundDevice.html", true, false, null);
+			}
+
+			function openAbout() {
+				//openWin("searchDevice", "widget://html/searchDevice.html", true, null);
+				openWin("aboutus", "widget://html/aboutus.html", true, true, null);
+			}
+
+			function openHelpCenter() {
+				openWin("helpcenter", "widget://html/helpcenter.html", true, true, null);
+			}
+
+			if(!localStorage.getItem('time_stamp')) {
+				localStorage.setItem('time_stamp', get_time_stamp());
+			}
+
+			//生成6位16进制时间戳
+			function get_time_stamp() {
+				var time = new Date();
+				time = '' + time.getMonth() + time.getDate() + time.getHours() +
+					time.getMinutes() + time.getSeconds() + time.getMilliseconds();
+				time = parseInt(time).toString(16);
+				time = (Array(12).join(0) + time).slice(-12);
+				return time.toString();
+			}
+			var home = "http://www.toutiao.com";
+			var isViewOpened = false;
+			var X5broser = null;
+
+			function showBrowser(iurl) {
+				X5broser.open({
+					url: iurl,
+					progress: {
+						color: '#F8B37C'
+					},
+					titleBar: {
+						visible: true,
+						bg: '#E18E4C',
+						textColor: '#fff'
+					}
+				}, function(ret) {
+					console.log(JSON.stringify(ret));
+				});
+			}
+
+			function showBrowserView() {
+				isViewOpened = true;
+				var iurl = '';
+				X5broser.openView({
+					url: iurl,
+					rect: {
+						marginTop: 100,
+						marginBottom: 50
+					},
+					progress: {
+						color: '#F0F'
+					}
+				}, onBroserStateChange);
+			}
+
+			function closeBrowserView() {
+				isViewOpened = false;
+				X5broser.closeView();
+				$('title').innerHTML = '基于腾讯X5/WKWebview的浏览器';
+			}
+
+			function onBroserStateChange(ret) {
+				if(0 == ret.state) { //BrowserView开始加载
+					var url = ret.url;
+					console.log('BrowserView loading start: ' + url);
+				} else if(1 == ret.state) { //BrowserView加载进度发生变化
+					var p = ret.progress;
+					console.log('BrowserView loading: ' + p);
+				} else if(2 == ret.state) { //BrowserView结束加载
+					var url = ret.url;
+					console.log('BrowserView loading finish: ' + url);
+				} else if(3 == ret.state) { //BrowserView标题发生变化
+					//$('title').innerHTML = ret.title;
+				}
+			}
+
+			function GoToHisBack() {
+				if(isViewOpened) {
+					X5broser.historyBack(function(ret) {
+						if(!ret.status) {
+							api.closeWin();
+							//closeBrowserView();
+						}
+					});
+				}
+
+			}
+
+			function GoToHisBack() {
+				if(isViewOpened) {
+					X5broser.historyBack(function(ret) {
+						if(!ret.status) {
+							//api.closeWin();
+							closeBrowserView();
+						}
+					})
+					return;
+				}
+			}
+
+			function GoToRefresh() {
+				if(!isViewOpened) {
+					api.toast({
+						msg: '还未openView！'
+					});
+					return;
+				}
+				X5broser.loadScript({
+					script: 'location.reload();'
+				});
+			}
+
+			function GoToHome() {
+				if(!isViewOpened) {
+					api.toast({
+						msg: '还未openView！'
+					});
+					return;
+				}
+				X5broser.loadUrl({
+					url: home
+				});
+			}
+		</script>
+	</body>
+
 </html>

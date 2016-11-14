@@ -4,7 +4,6 @@
 /**************************BLE 4.0操作思路***********************/
 var g_bleSDK = null;
 
-
 const _PERIPHERALUUID = "peripheralUUID";
 
 //下拉刷新配置
@@ -42,12 +41,12 @@ function setStatusBar(style) {
 }
 
 //打开新页面/窗口
-function openWin(name, url, isReload, args) {
+function openWin(name, url, isReload, slidBack, args) {
 	api.openWin({
 		name: name, //要打开的新页面去掉后面的.html
 		url: url, //子页面路径
 		reload: isReload, //打开新页面是否重新加载/刷新页面
-		slidBackEnabled: false, //只对IOS有效//禁止滑动关闭
+		slidBackEnabled: slidBack, //只对IOS有效//禁止滑动关闭
 		delay: 0,
 		bounces: false,
 		vScrollBarEnabled: false,
@@ -214,11 +213,10 @@ function fndiscoverCharacteristics(pass_service_uuid) {
 
 	g_bleSDK.discoverCharacteristics({
 		peripheralUUID: localStorage.getItem(_PERIPHERALUUID),
-		serviceUUID:pass_service_uuid
+		serviceUUID: pass_service_uuid
 	}, function(ret) {
 		if(ret) {
 			alert("discoverCharacteristics=" + JSON.stringify(ret));
 		}
 	});
 }
-
