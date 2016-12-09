@@ -102,6 +102,7 @@ function Android_ListenKeyBack() {
 		name: 'keyback'
 	}, function(ret, err) {
 		var titleID = document.getElementById('title').innerText;
+		var confirmBlk = document.getElementById('confirm').style.display;
 		if(titleID == '榻榻米控制') {
 			fnbackToList();
 		} else if(confirmBlk == 'block') {
@@ -172,6 +173,7 @@ function fninnersearchDeviceHtml2List(arr) {
 		//小心书写，注意大小写
 		var Name = dict.name;
 		if(Name == 'EMB1066 BLE') Name = '樱井智能榻榻米';
+		else if(Name == 'YJTTM-3060') Name = '樱井智能榻榻米';
 		var uuid = dict.uuid; //安卓的是MAC地址，苹果的是UUID
 		var rssi = dict.rssi;
 		rssi = Math.abs(rssi);
@@ -185,7 +187,6 @@ function fninnersearchDeviceHtml2List(arr) {
 			bindHTML = '<span class="mgr">(已绑定)</span>';
 		};
 		console.log(rssi);
-
 		//处理信息
 		if(!Name) Name = '未知设备';
 		if(!rssi) rssi = '未知';
@@ -227,11 +228,6 @@ function fnCheckisConnect() {
 
 function EnterTaTaMiOpUI(uuid) {
 	document.getElementById('confirm').style.display = 'none';
-	/*api.showProgress({
-		animationType: 'zoom',
-		title: '连接成功...',
-		text: '正在加载数据'
-	});*/
 	document.getElementById('list').style.display = 'none';
 	document.getElementById('control').style.display = 'block';
 	document.getElementById('breakBtn').style.display = 'block';
@@ -261,7 +257,7 @@ function EnterTaTaMiOpUI(uuid) {
 			})
 			clearTimeout(checkOnload);
 		}
-	}, 500)
+	}, 2000)
 
 	var checkOnload = setTimeout(function() {
 		if(onloadSum >= 6) {
@@ -316,7 +312,7 @@ function fnConnectDevice(pass_uuid, device_name) {
 
 	var timeout = setTimeout(function() {
 		api.hideProgress();
-		mui.alert('蓝牙不稳定或者设备非法', '连接超时', function() {
+		mui.alert('蓝牙不稳定或者设备非法', '出错咯~', function() {
 			fnDisConnectDecice();
 		});
 	}, 20000);
@@ -324,6 +320,7 @@ function fnConnectDevice(pass_uuid, device_name) {
 	if(device_name != '樱井智能榻榻米') {
 		api.hideProgress();
 		alert('非法设备');
+		clearTimeout(timeout);
 		return;
 	} else {
 		console.log('合法设备');
@@ -394,6 +391,8 @@ function fndiscoverCharacteristics() {
 			fnsetSimpleNotify();
 			setTimeout(function() {
 				fnbinding();
+				//EnterTaTaMiOpUI();
+				//api.hideProgress();
 				clearTimeout(test_timer_id);
 			}, 600);
 		} else {
@@ -647,9 +646,8 @@ function waitBind() {
 						var rmsg_2 = rmsg.substring(29, 31);
 						console.log('rmsg_1:' + rmsg_1);
 						console.log('rmsg_2:' + rmsg_2);
-						if(rmsg_1 == _SuccessBind || rmsg_2 == _SuccessBind) {
+						if(rmsg_1 == _SuccessBind || rmsg_2 == _SuccessBind || rmsg_1 == _HasBind || rmsg_2 == _HasBind) {
 							localStorage.setItem(uuid, 'ture');
-							//api.hideProgress();
 							EnterTaTaMiOpUI();
 							clearInterval(intervar);
 							clearTimeout(reAsk1);
@@ -660,7 +658,7 @@ function waitBind() {
 					}
 				}
 			})
-			//fnclearAllSimpleNotifyData();
+			fnclearAllSimpleNotifyData();
 	}, 1500)
 
 	var reAsk1 = setTimeout(function() {
@@ -673,12 +671,11 @@ function waitBind() {
 	var finalAsk = setTimeout(function() {
 		clearInterval(intervar);
 		finalAskBind();
-	}, 15500)
+	}, 16000)
 }
 
 function reAskBind() {
 	var sval = localStorage.getItem('time_stamp') + _AskBind;
-	console.log('reAskBind send data:' + sval);
 	g_bleSDK.writeValueForCharacteristic({
 		peripheralUUID: localStorage.getItem(_PERIPHERALUUID),
 		serviceUUID: localStorage.getItem(_SERVICEUUID),
@@ -686,38 +683,13 @@ function reAskBind() {
 		value: sval
 	}, function(ret) {
 		if(ret) {
-			//alert(JSON.stringify(ret));
+			console.log('reAskBind send data:' + sval);
 		}
 	});
-	setTimeout(function() {
-		g_bleSDK.getAllSimpleNotifyData(function(ret) {
-			var uuid = localStorage.getItem(_PERIPHERALUUID);
-			for(var key in ret) {
-				if(key == uuid) {
-					remsg = '' + ret[key].data;
-					var rmsg_1 = remsg.substring(12, 14);
-					var rmsg_2 = remsg.substring(29, 31);
-					console.log('rmsg_1:' + rmsg_1);
-					console.log('rmsg_2:' + rmsg_2);
-					fnclearAllSimpleNotifyData();
-					if(rmsg_1 == _HasBind || rmsg_2 == _HasBind) {
-						localStorage.setItem(uuid, 'ture');
-						//api.hideProgress();
-						EnterTaTaMiOpUI();
-					} else {
-						/*msg('等待超时');
-						api.hideProgress();
-						fnDisConnectDecice();*/
-					}
-				}
-			}
-		})
-	}, 200)
 }
 
 function finalAskBind() {
 	var sval = localStorage.getItem('time_stamp') + _AskBind;
-	console.log('finalAskBind send data:' + sval);
 	g_bleSDK.writeValueForCharacteristic({
 		peripheralUUID: localStorage.getItem(_PERIPHERALUUID),
 		serviceUUID: localStorage.getItem(_SERVICEUUID),
@@ -725,7 +697,7 @@ function finalAskBind() {
 		value: sval
 	}, function(ret) {
 		if(ret) {
-			//alert(JSON.stringify(ret));
+			console.log('finalAskBind send data:' + sval);
 		}
 	});
 	setTimeout(function() {
@@ -733,25 +705,31 @@ function finalAskBind() {
 			var uuid = localStorage.getItem(_PERIPHERALUUID);
 			for(var key in ret) {
 				if(key == uuid) {
-					remsg = '' + ret[key].data;
-					var rmsg_1 = remsg.substring(12, 14);
-					var rmsg_2 = remsg.substring(29, 31);
+					var rmsg = '' + ret[key].data;
+					//console.log('recive data:' + rmsg);
+					var rmsg_1 = rmsg.substring(12, 14);
+					var rmsg_2 = rmsg.substring(29, 31);
 					console.log('rmsg_1:' + rmsg_1);
 					console.log('rmsg_2:' + rmsg_2);
-					fnclearAllSimpleNotifyData();
-					if(rmsg_1 == _HasBind || rmsg_2 == _HasBind) {
+					if(rmsg_1 == _SuccessBind || rmsg_2 == _SuccessBind || rmsg_1 == _HasBind || rmsg_2 == _HasBind) {
 						localStorage.setItem(uuid, 'ture');
-						//api.hideProgress();
 						EnterTaTaMiOpUI();
+						fnclearAllSimpleNotifyData();
 					} else {
-						msg('等待超时');
-						api.hideProgress();
-						fnDisConnectDecice();
+						g_bleSDK.disconnect({
+							peripheralUUID: localStorage.getItem(_PERIPHERALUUID)
+						}, function(ret, err) {
+							if(ret.status) {
+								console.log('断开连接..');
+								alert('等待超时');
+								document.getElementById('confirm').style.display = 'none';
+							}
+						});
 					}
 				}
 			}
 		})
-	}, 200)
+	}, 100)
 }
 
 //解绑
